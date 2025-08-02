@@ -6,26 +6,25 @@ from io import BytesIO
 st.set_page_config(page_title="TailorCV – AI Resume & Cover Letter Coach", layout="centered")
 st.title("🧵 TailorCV – Build Smarter Resumes & Cover Letters")
 
-option = st.radio("Choose what you want to do:", 
+option = st.radio("Choose what you want to do:",
     ["📤 Upload & Improve Resume", 
      "🧱 Build Resume from Scratch",
      "✍️ Generate a Cover Letter"])
 
-# ------------------ Upload Resume (Placeholder) ------------------
+# ------------------ Upload Resume ------------------
 if option == "📤 Upload & Improve Resume":
     uploaded_file = st.file_uploader("Upload your resume (.docx or .pdf)", type=["docx", "pdf"])
-    jd_text = st.text_area("Paste the Job Description here")
+    jd_text = st.text_area("Paste the Job Description here", placeholder="E.g., We're looking for a Data Analyst with experience in SQL, Python, and Power BI...")
 
     if uploaded_file and jd_text:
         st.success("Resume and JD uploaded successfully!")
-
         if st.button("Analyze Resume"):
             st.write("🧠 AI Feedback coming soon...")
             st.write("✍️ Cover Letter generation coming soon...")
 
 # ------------------ Build Resume from Scratch ------------------
 elif option == "🧱 Build Resume from Scratch":
-    st.subheader("🔹 Contact Info")
+    st.subheader("🔹 Resume Builder")
 
     demo_mode = st.checkbox("🧪 Use demo/test data")
 
@@ -35,9 +34,9 @@ elif option == "🧱 Build Resume from Scratch":
         email = "pratiksha.raturi@example.com"
         linkedin = "https://linkedin.com/in/pratiksha-raturi"
         github = "https://github.com/pratiksha-raturi"
-        summary = "Final-year B.Tech student in Computer Science with hands-on experience in AI solutions. Built TailorCV and Credit Risk Predictor."
-        education = "B.Tech in CSE – UPES – 2021–2025 – 8.3 CGPA\nXII – DPS – 92%\nX – DPS – 94%"
-        experience = "AI Intern | RANGR Data | May–Aug 2024\n• Built LLM dashboard with Foundry\n• Created credit scoring pipelines"
+        summary = "Final-year B.Tech student with projects in resume AI and credit modeling. Skilled in Python, Streamlit, and ML."
+        education = "B.Tech in CSE – UPES – 2021–2025 – CGPA: 8.3/10\nXII – DPS – 92%\nX – DPS – 94%"
+        experience = "AI Intern | RANGR Data | May–Aug 2024\n• Built resume parser using OpenAI\n• Integrated LLM into analytics pipeline"
         projects = "TailorCV – GPT Resume App\nCredit Risk Predictor – Bayesian ML model"
         skills = "Python, Streamlit, Pandas, Git, Power BI"
         certifications = "IBM GenAI – June 2025\nGoogle DA – April 2025"
@@ -45,16 +44,23 @@ elif option == "🧱 Build Resume from Scratch":
     else:
         with st.form("resume_form"):
             name = st.text_input("Full Name")
-            phone = st.text_input("Phone")
-            email = st.text_input("Email")
-            linkedin = st.text_input("LinkedIn URL")
-            github = st.text_input("GitHub URL")
-            summary = st.text_area("Professional Summary")
-            education = st.text_area("Education")
-            experience = st.text_area("Work Experience")
-            projects = st.text_area("Projects (Optional)")
-            skills = st.text_area("Skills")
-            certifications = st.text_area("Certifications (Optional)")
+            phone = st.text_input("Phone Number")
+            email = st.text_input("Email Address")
+            linkedin = st.text_input("LinkedIn URL", placeholder="https://linkedin.com/in/yourname")
+            github = st.text_input("GitHub URL", placeholder="https://github.com/yourusername")
+
+            summary = st.text_area("Professional Summary", placeholder="E.g., Final-year B.Tech student with internship experience in AI/ML and strong analytical background.", help="Summarize your career goals, key skills, and notable achievements.")
+
+            education = st.text_area("Education", placeholder="E.g., B.Tech in Computer Science – UPES – 2025 – CGPA: 8.2\nXII – CBSE – 91%\nX – CBSE – 93%", help="Mention degree, institution, year, and scores in consistent format.")
+
+            experience = st.text_area("Work Experience", placeholder="E.g., AI Intern | ABC Corp | Jan–Apr 2024\n• Built a chatbot using GPT-4\n• Conducted market research", help="Use bullet points with achievements and metrics.")
+
+            projects = st.text_area("Projects (Optional)", placeholder="E.g., Resume Builder | GPT + Streamlit\nLandslide Predictor | CNN + HDF5 Data", help="Add academic or personal projects with tools used.")
+
+            skills = st.text_area("Skills", placeholder="E.g., Python, SQL, Power BI, Streamlit, Git", help="Comma-separated list of key skills relevant to your role.")
+
+            certifications = st.text_area("Certifications (Optional)", placeholder="E.g., IBM GenAI – June 2025\nGoogle DA – April 2025")
+
             submitted = st.form_submit_button("✅ Generate Resume")
 
     if submitted:
@@ -87,23 +93,23 @@ elif option == "✍️ Generate a Cover Letter":
         your_institution = "UPES Dehradun"
         your_position = "Data Analyst Intern"
         company = "Zomato"
-        experience_summary = "Internships exposed me to LLM integrations, pipelines, and resume building projects."
-        resume_summary = "Python, ML, Streamlit, Resume AI, Credit Risk modeling"
-        best_internship = "AI Intern at RANGR Data using OpenAI + Foundry"
-        how_will_help = "Will expand my analytics and visualization depth, aligned with my career goals."
-        soft_skills = "Strong communication, empathy-based problem solving, and team-first mindset."
+        experience_summary = "Exposure to LLM integrations, content writing, and business insights."
+        resume_summary = "Experience in resume AI, ML pipelines, and prompt engineering with GPT-4."
+        best_internship = "AI Intern at RANGR Data, built OpenAI-powered dashboards."
+        how_will_help = "This opportunity aligns with my long-term analytics goals and will help me deepen my impact in research-based product teams."
+        soft_skills = "Empathetic, collaborative, highly communicative with a passion for learning."
         submitted = True
     else:
         with st.form("cover_form"):
             your_name = st.text_input("Your Name")
             your_institution = st.text_input("College/University")
-            your_position = st.text_input("Position You're Applying For")
+            your_position = st.text_input("Job Role You're Applying For")
             company = st.text_input("Company Name")
-            experience_summary = st.text_area("Short Summary of Past Experience")
-            resume_summary = st.text_area("Resume Summary Highlights")
-            best_internship = st.text_area("Your Best Internship")
-            how_will_help = st.text_area("How This Opportunity Will Help You")
-            soft_skills = st.text_area("Mention Your Soft Skills or Work Style")
+            experience_summary = st.text_area("Brief Experience Summary", help="Summarize your background and exposure.")
+            resume_summary = st.text_area("What does your resume showcase?", help="Summarize your resume focus.")
+            best_internship = st.text_area("Your Best Internship", help="Mention company + what you worked on.")
+            how_will_help = st.text_area("How this opportunity helps you")
+            soft_skills = st.text_area("Mention your work style or soft skills")
             submitted = st.form_submit_button("Generate Cover Letter")
 
     if submitted:
@@ -114,15 +120,17 @@ elif option == "✍️ Generate a Cover Letter":
         doc.add_paragraph("")
         doc.add_paragraph("Dear Selection Committee,")
 
-        body = (
-            f"I am writing today in application for the position of {your_position} at {company}, India. "
+        content = (
+            f"Purpose: I am writing today in application for the position of {your_position} at {company}, India. "
             f"{experience_summary} "
-            f"My attached resume outlines {resume_summary}. "
+            f"As my attached resume outlines, {resume_summary} "
             f"{how_will_help} "
+            f"Apart from academics, my best internship experience was at {best_internship}. "
             f"{soft_skills} "
+            f"\n\nYour careful review of my application is deeply appreciated. Thank you for the opportunity."
             f"\n\nSincerely,\n{your_name}"
         )
-        doc.add_paragraph(body)
+        doc.add_paragraph(content)
 
         buffer = BytesIO()
         doc.save(buffer)
