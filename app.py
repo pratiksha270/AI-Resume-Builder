@@ -37,9 +37,9 @@ elif option == "🧱 Build Resume from Scratch":
         summary = "Final-year B.Tech student with projects in resume AI and credit modeling. Skilled in Python, Streamlit, and ML."
         education = "B.Tech in CSE – UPES – 2021–2025 – CGPA: 8.3/10\nXII – DPS – 92%\nX – DPS – 94%"
         experience = "AI Intern | RANGR Data | May–Aug 2024\n• Built resume parser using OpenAI\n• Integrated LLM into analytics pipeline"
-        projects = "TailorCV – GPT Resume App\nCredit Risk Predictor – Bayesian ML model"
+        projects = "TailorCV – Resume Builder | GPT + Streamlit\n• Built resume + cover letter tool with form inputs\n• Generates Word output using python-docx\n\nLandslide Predictor | CNN + HDF5 Data\n• Used image segmentation for terrain classification\n• Achieved 92% validation accuracy"
         skills = "Python, Streamlit, Pandas, Git, Power BI"
-        certifications = "IBM GenAI – June 2025\nGoogle DA – April 2025"
+        certifications = "IBM GenAI – June 2025\n• Built a mini LLM project using prompts and embeddings\n• Created chatbot-like QA interface\n\nGoogle DA – April 2025\n• Used real-world datasets to build dashboards\n• Final project: bakery sales report in Google Sheets"
         submitted = True
     else:
         with st.form("resume_form"):
@@ -55,11 +55,11 @@ elif option == "🧱 Build Resume from Scratch":
 
             experience = st.text_area("Work Experience", placeholder="E.g., AI Intern | ABC Corp | Jan–Apr 2024\n• Built a chatbot using GPT-4\n• Conducted market research", help="Use bullet points with achievements and metrics.")
 
-            projects = st.text_area("Projects (Optional)", placeholder="E.g., Resume Builder | GPT + Streamlit\nLandslide Predictor | CNN + HDF5 Data", help="Add academic or personal projects with tools used.")
+            projects = st.text_area("Projects (Optional)", placeholder="E.g.,\nTailorCV – Resume Builder | GPT + Streamlit\n• Built resume + cover letter tool with form inputs\n• Generates Word output using python-docx\n\nLandslide Predictor | CNN + HDF5 Data\n• Used image segmentation for terrain classification\n• Achieved 92% validation accuracy", help="Add academic or personal projects with tools used and 1–2 bullet points.")
 
             skills = st.text_area("Skills", placeholder="E.g., Python, SQL, Power BI, Streamlit, Git", help="Comma-separated list of key skills relevant to your role.")
 
-            certifications = st.text_area("Certifications (Optional)", placeholder="E.g., IBM GenAI – June 2025\nGoogle DA – April 2025")
+            certifications = st.text_area("Certifications (Optional)", placeholder="E.g., IBM GenAI – June 2025\n• Built a mini LLM project\n• Created chatbot using prompts")
 
             submitted = st.form_submit_button("✅ Generate Resume")
 
@@ -105,11 +105,11 @@ elif option == "✍️ Generate a Cover Letter":
             your_institution = st.text_input("College/University")
             your_position = st.text_input("Job Role You're Applying For")
             company = st.text_input("Company Name")
-            experience_summary = st.text_area("Brief Experience Summary", help="Summarize your background and exposure.")
-            resume_summary = st.text_area("What does your resume showcase?", help="Summarize your resume focus.")
-            best_internship = st.text_area("Your Best Internship", help="Mention company + what you worked on.")
-            how_will_help = st.text_area("How this opportunity helps you")
-            soft_skills = st.text_area("Mention your work style or soft skills")
+            experience_summary = st.text_area("Brief Experience Summary", help="Summarize your exposure to work, community, or projects.")
+            resume_summary = st.text_area("Resume Summary Highlights", help="What does your resume show: key skills, achievements, tools?")
+            best_internship = st.text_area("Your Best Internship", help="Mention company, duration, and work you did.")
+            how_will_help = st.text_area("How this opportunity helps you", help="Explain how it supports your learning/career.")
+            soft_skills = st.text_area("Mention your soft skills and work traits", help="E.g., collaborative, proactive, team-focused")
             submitted = st.form_submit_button("Generate Cover Letter")
 
     if submitted:
@@ -124,6 +124,7 @@ elif option == "✍️ Generate a Cover Letter":
             f"Purpose: I am writing today in application for the position of {your_position} at {company}, India. "
             f"{experience_summary} "
             f"As my attached resume outlines, {resume_summary} "
+            f"I wish to intensify my knowledge and follow this path in my long-term professional journey. "
             f"{how_will_help} "
             f"Apart from academics, my best internship experience was at {best_internship}. "
             f"{soft_skills} "
